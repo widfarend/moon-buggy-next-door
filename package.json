@@ -5,8 +5,7 @@
   "scripts": {
     "ng": "ng",
     "postinstall": "ng build --aot -prod",
-    "prestart": "tailwind build ./src/tailwind-build.css -c ./tailwind.js -o ./src/styles.css",
-    "start-local": "ng serve",
+    "start-local": "tailwind build ./src/tailwind-build.css -c ./tailwind.js -o ./src/styles.css && ng serve",
     "start": "node server.js",
     "build": "ng build --prod",
     "test": "ng test",
