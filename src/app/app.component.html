@@ -4,6 +4,21 @@
     {{ title }}
   </h1>
 
+<span *ngFor="let vehicle of vehicles">
+  <div class="card inline-block">
+    <div class="px-4 py-3 relative min-h-3">
+      <p>Name: {{vehicle.name}}</p>
+      <p>Model: {{vehicle.model}}</p>
+      <p>Lat: {{vehicle.lat}}</p>
+      <p>Long: {{vehicle.long}}</p>
+      <p>Power: {{vehicle.power_level_percent}}%</p>
+    </div>
+  </div>
+
+</span>
+
+</div>
+
 <!--<div class="card">-->
   <!--<img class="h-24 min-w-full block" src="https://pbs.twimg.com/profile_banners/130457262/1437142427/1500x500" />-->
   <!--<div class="px-4 py-3 relative min-h-3">-->
@@ -30,18 +45,7 @@
   <!--</div>-->
 <!--</div>-->
 
-<span *ngFor="let vehicle of vehicles">
-  <div class="card inline-block">
-    <div class="px-4 py-3 relative min-h-3">
-      <p>Name: {{vehicle.name}}</p>
-      <p>Model: {{vehicle.model}}</p>
-      <p>Lat: {{vehicle.lat}}</p>
-      <p>Long: {{vehicle.long}}</p>
-      <p>Power: {{vehicle.power_level_percent}}%</p>
-    </div>
-  </div>
 
-</span>
 
   <!-- this creates a google map on the page with the given lat/lng from -->
   <!-- the component as the initial center of the map: -->
@@ -49,4 +53,4 @@
     <!--<agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>-->
   <!--</agm-map>-->
 
-</div>
+
