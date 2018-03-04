@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+
 import { VehicleService} from './services/vehicle';
 import { ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
+  selector: 'cnd-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
@@ -24,5 +25,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
+
   }
+
+
 }

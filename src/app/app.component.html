@@ -1,12 +1,13 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<div class="text-left w-1/4 z-10 flex-col absolute">
   <h1 class="card">
     {{ title }}
   </h1>
+</div>
 
-<span *ngFor="let vehicle of vehicles">
-  <div class="card inline-block">
-    <div class="px-4 py-3 relative min-h-3">
+<span *ngFor="let vehicle of vehicles" class="h-full absolute">
+  <div class="card flex-col z-10">
+    <div class="px-4 py-3 min-h-3">
       <p>Name: {{vehicle.name}}</p>
       <p>Model: {{vehicle.model}}</p>
       <p>Lat: {{vehicle.lat}}</p>
@@ -17,7 +18,10 @@
 
 </span>
 
-</div>
+<cnd-moon-map></cnd-moon-map>
+
+
+
 
 <!--<div class="card">-->
   <!--<img class="h-24 min-w-full block" src="https://pbs.twimg.com/profile_banners/130457262/1437142427/1500x500" />-->

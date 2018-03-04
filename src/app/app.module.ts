@@ -7,11 +7,13 @@ import { VehicleService } from './services/vehicle';
 
 import { AppComponent } from './app.component';
 import {AgmCoreModule} from '@agm/core';
+import { MoonMapComponent } from './components/moon-map/moon-map.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MoonMapComponent
   ],
   imports: [
     BrowserModule,
