@@ -1,8 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {HttpClientModule } from '@angular/common/http';
 
+
+import { VehicleService } from './services/vehicle';
 
 import { AppComponent } from './app.component';
+import {AgmCoreModule} from '@agm/core';
 
 
 @NgModule({
@@ -10,9 +14,13 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    AgmCoreModule.forRoot({
+        apiKey: 'AIzaSyAP6BWd4tyVbX1AZAbAsOZ8PXuvKO7mLU8'
+    })
   ],
-  providers: [],
+  providers: [ VehicleService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
