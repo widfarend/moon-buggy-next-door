@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ElementRef, ViewChild, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 declare const google: any;
 
@@ -7,18 +7,35 @@ declare const google: any;
     templateUrl: './moon-map.component.html',
     styleUrls: ['./moon-map.component.css']
 })
-export class MoonMapComponent implements OnInit {
+export class MoonMapComponent implements OnInit, OnChanges {
+    @ViewChild('gmap') gmap: ElementRef;
+    @Input('dataPoints') dataPoints: any = [];
+    @Input('commandCentre') commandCentre: any = [];
+    private map: any;
 
     constructor() {
+
     }
 
     ngOnInit() {
         this.initMap();
+        console.log(JSON.stringify(this.commandCentre));
+        this.addBase(this.commandCentre);
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        // console.log(changes.dataPoints);
+
+        if (changes['dataPoints']) {
+            this.addDataPoints(changes.dataPoints.currentValue);
+        }
+
     }
 
     initMap() {
-        console.log(google);
-        const map = new google.maps.Map(document.getElementById('gmap'), {
+        // console.log(google);
+
+        this.map = new google.maps.Map(this.gmap.nativeElement, {
             center: {lat: 0, lng: 0},
             zoom: 2,
             streetViewControl: false,
@@ -46,8 +63,8 @@ export class MoonMapComponent implements OnInit {
             name: 'Moon'
         });
 
-        map.mapTypes.set('moon', moonMapType);
-        map.setMapTypeId('moon');
+        this.map.mapTypes.set('moon', moonMapType);
+        this.map.setMapTypeId('moon');
     }
 
     getNormalizedCoord(coord, zoom) {
@@ -69,6 +86,23 @@ export class MoonMapComponent implements OnInit {
         }
 
         return {x: x, y: y};
+    }
+
+    addDataPoints(dataPoints: any) {
+        console.log(dataPoints);
+
+        dataPoints.forEach((dataPoint) => {
+            const point = {lat: dataPoint.lat, lng: dataPoint.long};
+            const marker = new google.maps.Marker({
+                position: point,
+                map: this.map,
+                icon: dataPoint.icon
+            });
+        });
+    }
+
+    addBase(base: any) {
+        this.addDataPoints([].concat(base));
     }
 
 }
