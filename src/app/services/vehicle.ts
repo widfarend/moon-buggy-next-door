@@ -18,6 +18,6 @@ export class VehicleService {
     }
 
     get(vehicleId: number) {
-        return this.http.get(`${environment.VEHICLE_API_BASE_URL}/${vehicleId}/locate.json`);
+        return this.http.get(`${environment.VEHICLE_API_BASE_URL}${vehicleId}/locate.json`);
     }
 }
