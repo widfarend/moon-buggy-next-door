@@ -6,21 +6,19 @@ import {HttpClientModule } from '@angular/common/http';
 import { VehicleService } from './services/vehicle';
 
 import { AppComponent } from './app.component';
-import {AgmCoreModule} from '@agm/core';
 import { MoonMapComponent } from './components/moon-map/moon-map.component';
+import { LatlongLocateComponent } from './components/latlong-locate/latlong-locate.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MoonMapComponent
+    MoonMapComponent,
+    LatlongLocateComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
-    AgmCoreModule.forRoot({
-        apiKey: 'AIzaSyAP6BWd4tyVbX1AZAbAsOZ8PXuvKO7mLU8'
-    })
+    HttpClientModule
   ],
   providers: [ VehicleService ],
   bootstrap: [AppComponent]

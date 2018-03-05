@@ -32,6 +32,9 @@ export class MoonMapComponent implements OnInit, OnChanges {
 
     }
 
+    /**
+     *
+     */
     initMap() {
         // console.log(google);
 
@@ -67,6 +70,12 @@ export class MoonMapComponent implements OnInit, OnChanges {
         this.map.setMapTypeId('moon');
     }
 
+    /**
+     *
+     * @param coord
+     * @param zoom
+     * @returns {any}
+     */
     getNormalizedCoord(coord, zoom) {
         const y = coord.y;
         let x = coord.x;
@@ -88,6 +97,10 @@ export class MoonMapComponent implements OnInit, OnChanges {
         return {x: x, y: y};
     }
 
+    /**
+     *
+     * @param dataPoints
+     */
     addDataPoints(dataPoints: any) {
         console.log(dataPoints);
 
@@ -101,8 +114,20 @@ export class MoonMapComponent implements OnInit, OnChanges {
         });
     }
 
+    /**
+     *
+     * @param base
+     */
     addBase(base: any) {
         this.addDataPoints([].concat(base));
+    }
+
+    locate(latlong) {
+        const [ lat, long ] = latlong.split(',');
+        if (!isNaN(lat) && !isNaN(long)) {
+            this.map.setCenter(new google.maps.LatLng( Number(lat), Number(long) ));
+
+        }
     }
 
 }

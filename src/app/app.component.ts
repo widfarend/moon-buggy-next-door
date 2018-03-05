@@ -1,45 +1,49 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import { environment} from '../environments/environment';
-import { VehicleService} from './services/vehicle';
+import {Component, OnInit, ViewChild } from '@angular/core';
+import {environment} from '../environments/environment';
+import {VehicleService} from './services/vehicle';
+
+import { CommandCentre } from './models/command-centre.model';
 
 @Component({
-  selector: 'cnd-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'cnd-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, OnChanges {
+export class AppComponent implements OnInit {
+    @ViewChild('cndMoonMap') cndMoonMap;
+    title = 'MOON BUGGY NEXT DOOR';
+    vehicles = [];
+    icons = {
+        vehicle: 'http://cdn1.iconfinder.com/data/icons/astronomy-filled-line/614/4262_-_Vehicle-64.png',
+        base: 'http://cdn2.iconfinder.com/data/icons/space-flat/512/space_house-01-64.png'
+    };
+    commandCentre: CommandCentre = {
+        lat: environment.COMMAND_CENTRE_LAT,
+        long: environment.COMMAND_CENTRE_LONG,
+        icon: this.icons['base']
+    };
 
-  title = 'Moon Buggy Next Door';
-  vehicles = [];
-  icons = {
-    vehicle: 'http://cdn1.iconfinder.com/data/icons/astronomy-filled-line/614/4262_-_Vehicle-64.png',
-    base: 'https://cdn2.iconfinder.com/data/icons/space-flat/512/space_house-01-64.png'
-  };
-  commandCentre: { lat: number, long: number, icon: string} = {
-      lat: environment.COMMAND_CENTRE_LAT,
-      long: environment.COMMAND_CENTRE_LONG,
-      icon: this.icons['base']
-  };
-  constructor(private vehicleService: VehicleService) {
-    console.log('AppComponent');
+    constructor(private vehicleService: VehicleService) {
+        console.log('AppComponent');
 
-    for (let i = 0; i <= 5; i++) {
-        this.vehicleService.get(i)
-            .subscribe(vehicle => {
-              return this.vehicles = [].concat({...vehicle, icon: this.icons['vehicle']});
-            });
+        for (let i = 0; i <= 5; i++) {
+            this.vehicleService.get(i)
+                .subscribe(vehicle => {
+                    return this.vehicles = [].concat({...vehicle, icon: this.icons['vehicle']});
+                });
+        }
+
     }
 
-  }
-
-  ngOnInit() {
+    ngOnInit() {
 
 
-  }
+    }
 
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
-  }
+    onLatLongLocate(event) {
+        console.log('EMITTED: ', event);
+        this.cndMoonMap.locate(event);
+    }
 
 
 }
