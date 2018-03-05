@@ -3,6 +3,8 @@ import {environment} from '../../../environments/environment';
 
 declare const google: any;
 
+import { CommandCentre } from '../../models/command-centre.model';
+
 @Component({
     selector: 'cnd-moon-map',
     templateUrl: './moon-map.component.html',
@@ -11,7 +13,7 @@ declare const google: any;
 export class MoonMapComponent implements OnInit, OnChanges {
     @ViewChild('gmap') gmap: ElementRef;
     @Input('dataPoints') dataPoints: any = [];
-    @Input('commandCentre') commandCentre: any = [];
+    @Input('commandCentre') commandCentre: CommandCentre = { lat: 0, long: 0, icon: '' };
     private map: any;
 
     constructor() {
@@ -19,9 +21,14 @@ export class MoonMapComponent implements OnInit, OnChanges {
     }
 
     ngOnInit() {
-        this.initMap();
-        console.log(JSON.stringify(this.commandCentre));
-        this.addBase(this.commandCentre);
+        try {
+            this.initMap();
+            // console.log(JSON.stringify(this.commandCentre));
+            this.addBase(this.commandCentre);
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -103,7 +110,7 @@ export class MoonMapComponent implements OnInit, OnChanges {
      * @param dataPoints
      */
     addDataPoints(dataPoints: any) {
-        console.log(dataPoints);
+        // console.log(dataPoints);
 
         dataPoints.forEach((dataPoint) => {
             const point = {lat: dataPoint.lat, lng: dataPoint.long};
@@ -143,12 +150,8 @@ export class MoonMapComponent implements OnInit, OnChanges {
         const { lat1, lon1 } = latlong1;
         const { lat2, lon2 } = latlong2;
 
-        console.log('Haversine 1', lat1);
-        console.log('Haversine 2', latlong2);
-
         const R = environment.MOON_RADIUS; // Radius of the moon in km
         const dLat = this.deg2rad(lat2 - lat1);  // deg2rad below
-        console.log(dLat);
         const dLon = this.deg2rad(lon2 - lon1);
         const a =
             Math.sin(dLat / 2) * Math.sin(dLat / 2) +
@@ -156,12 +159,10 @@ export class MoonMapComponent implements OnInit, OnChanges {
             Math.sin(dLon / 2) * Math.sin(dLon / 2)
         ;
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        console.log('*******', c);
         return R * c; // Distance in km
     }
 
     deg2rad(deg) {
-        console.log('DEGREE: ', deg);
         return deg * (Math.PI / 180);
     }
 

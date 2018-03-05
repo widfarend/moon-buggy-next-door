@@ -2,12 +2,14 @@
 
 import { TestBed, async, inject, getTestBed } from '@angular/core/testing';
 import { VehicleService } from './vehicle';
+import {HttpClientModule} from '@angular/common/http';
 
 describe('HelperService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [VehicleService]
+            providers: [VehicleService],
+            imports: [ HttpClientModule ]
         });
     });
 
