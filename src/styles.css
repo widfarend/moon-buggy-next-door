@@ -4520,8 +4520,6 @@ button,
   margin: 1.5rem;
   border-radius: .5rem;
   background-color: #fff;
-  margin-left: auto;
-  margin-right: auto;
   box-shadow: 0 15px 30px 0 rgba(0, 0, 0, .11), 0 5px 15px 0 rgba(0, 0, 0, .08);
   max-width: 20rem;
   overflow: hidden;

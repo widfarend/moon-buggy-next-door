@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
     @ViewChild('cndMoonMap') cndMoonMap;
     title = 'MOON BUGGY NEXT DOOR';
     vehicles = [];
+    vehiclesRender = [];
     icons = {
         vehicle: 'http://cdn1.iconfinder.com/data/icons/astronomy-filled-line/614/4262_-_Vehicle-64.png',
         base: 'http://cdn2.iconfinder.com/data/icons/space-flat/512/space_house-01-64.png'
@@ -29,6 +30,7 @@ export class AppComponent implements OnInit {
         for (let i = 0; i <= 5; i++) {
             this.vehicleService.get(i)
                 .subscribe(vehicle => {
+                    this.vehiclesRender.push({...vehicle, icon: this.icons['vehicle']});
                     return this.vehicles = [].concat({...vehicle, icon: this.icons['vehicle']});
                 });
         }
@@ -41,7 +43,6 @@ export class AppComponent implements OnInit {
     }
 
     onLatLongLocate(event) {
-        console.log('EMITTED: ', event);
         this.cndMoonMap.locate(event);
     }
 

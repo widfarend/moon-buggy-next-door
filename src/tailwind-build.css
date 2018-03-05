@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .card {
-    @apply .border .m-6 .rounded-lg .bg-white .mx-auto .shadow-lg .max-w-xs .overflow-hidden
+    @apply .border .m-6 .rounded-lg .bg-white .shadow-lg .max-w-xs .overflow-hidden
 }
