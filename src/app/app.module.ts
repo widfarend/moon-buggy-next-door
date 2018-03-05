@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { MoonMapComponent } from './components/moon-map/moon-map.component';
 import { LatlongLocateComponent } from './components/latlong-locate/latlong-locate.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { PowerBarComponent } from './components/power-bar/power-bar.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     AppComponent,
     MoonMapComponent,
     LatlongLocateComponent,
-    SidebarComponent
+    SidebarComponent,
+    PowerBarComponent
   ],
   imports: [
     BrowserModule,

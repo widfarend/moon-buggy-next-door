@@ -1,16 +1,16 @@
-
-
-<!--<div class="flex-none w-full md:max-w-xs bg-purple text-white">-->
-    <!--Sidebar-->
-    <span *ngFor="let vehicle of vehicles" class="flex flex-row inline-block">
+<div class="flex flex-row md:flex-col overflow-x-scroll md:overflow-y-scroll">
+    <span *ngFor="let vehicle of vehicles" class="border-l md:border-b border-grey-light">
         <div class="z-10 w-full hover:bg-blue-lightest" (click)="selectVehicle(vehicle)">
             <div class="px-4 py-3 min-h-3 text-sm">
-                <p>Name: {{vehicle.name}}</p>
-                <p>Model: {{vehicle.model}}</p>
+                <p class="text-lg font-sans leading-tight text-cnd-blue">{{vehicle.name}}</p>
+                <p class="text-sm leading-tight text-grey-dark">{{vehicle.model}}</p>
                 <!--<p>Lat: {{vehicle.lat}}</p>-->
                 <!--<p>Long: {{vehicle.long}}</p>-->
-                <p>Power: {{vehicle.power_level_percent}}%</p>
+                <div class="flex flex-row pt-2">
+                    <p class="text-sm leading-tight text-grey-dark">Battery Level </p>
+                    <cnd-power-bar [powerLevel]="vehicle.power_level_percent"></cnd-power-bar>
+                </div>
             </div>
         </div>
     </span>
-<!--</div>-->
+</div>

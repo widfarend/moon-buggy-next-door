@@ -3,5 +3,67 @@
 @tailwind utilities;
 
 .card {
-    @apply .border .m-6 .rounded-lg .bg-white .shadow-lg .max-w-xs .overflow-hidden
+    @apply .border .m-6 .bg-white .shadow-lg .max-w-xs .overflow-hidden
+}
+
+.expanded-search {
+    @apply .p-0 .mt-0 .ml-0 .bg-white .absolute .z-10 .w-full
+}
+
+.lat-long-inner {
+    @apply .text-center .mx-auto .mt-0 .bg-white .shadow-lg .border .pl-4 .pr-4
+}
+
+@screen md {
+    .expanded-search {
+        @apply .border-r .border-b .m-0 .p-0 .mt-0 .ml-0 .rounded-sm .bg-white .shadow-lg .max-w-xs .overflow-hidden .absolute .z-10 .w-full
+    }
+}
+
+.bg-cnd-blue {
+    @apply .cnd-blue
+}
+
+.border-cnd-blue {
+    @apply .cnd-blue-border
+}
+
+.bg-cnd-blue-dark {
+    @apply .cnd-blue-dark
+}
+
+.border-cnd-blue-dark {
+    @apply .cnd-blue-border-dark
+}
+
+.text-cnd-blue {
+    @apply .cnd-text-color
+}
+
+.cnd-blue-border {
+    border-color: #2dc1e4;
+}
+
+.cnd-blue {
+    background-color: #2dc1e4;
+}
+
+.cnd-blue-border-dark {
+    border-color: #337ab7;
+}
+
+.cnd-blue-dark {
+    background-color: #337ab7;
+}
+
+.hover\:bg-cnd-blue-dark:hover {
+    background-color: #337ab7;
+}
+
+.hover\:border-cnd-blue-dark:hover {
+    border-color: #337ab7;
+}
+
+.cnd-text-color {
+    color: #2dc1e4;
 }

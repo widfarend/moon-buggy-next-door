@@ -1,10 +1,15 @@
-<div class="md:border md:m-6 mt-0 ml-0 md:rounded-lg bg-white md:shadow-lg md:max-w-xs md:overflow-hidden absolute z-10 m-2 w-full">
-    <div class="flex flex-col z-10">
+<div [ngClass]="'expanded-search absolute'">
+    <div class="flex flex-col z-10 bg-cnd-blue">
         <div class="text-grey-darker flex flex-grow text-center px-4 py-2 m-2 "><p class="p-0 text-center mx-auto font-sans font-semibold text-blue-darker">{{title}}</p></div>
-        <div class="text-grey-darker flex flex-grow text-center sm:py-0 sm:m-0 md:px-4 md:py-2 md:m-2 mt-0"><p class="text-center mx-auto mt-0">
-            <cnd-latlong-locate (latlongLocate)="onLatLongLocate($event)"></cnd-latlong-locate></p>
+        <div class="text-grey-darker flex flex-grow text-center sm:py-0 sm:m-0 md:px-4 md:py-2 md:m-2 mt-0 mx-auto ml-4 mr-4">
+            <p class="lat-long-inner pl-6 pr-6 rounded-sm">
+                <cnd-latlong-locate (latlongLocate)="onLatLongLocate($event)"></cnd-latlong-locate>
+            </p>
         </div>
-        <cnd-sidebar [vehicles]="vehiclesRender" (locateVehicle)="onLatLongLocate($event)"></cnd-sidebar>
+        <div class="bg-white">
+            <div class="h-10 bg-cnd-blue-dark w-full"></div>
+            <cnd-sidebar [vehicles]="vehiclesRender" (locateVehicle)="onLatLongLocate($event)"></cnd-sidebar>
+        </div>
     </div>
 </div>
 
