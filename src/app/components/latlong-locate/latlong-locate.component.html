@@ -1,0 +1,11 @@
+<form class="w-full max-w-sm">
+  <div class="flex items-center border-b border-b-2 blue-light py-1">
+    <input #latLong class="appearance-none bg-transparent border-none w-full text-grey-darker mr-3 py-1 px-2 text-sm" type="text"
+           placeholder="Latitude, Longitude" aria-label="Full name"
+    >
+    <button class="flex-no-shrink bg-blue-light hover:bg-blue border-blue-light hover:border-blue text-sm border-4 text-white py-1 px-2 rounded"
+            type="button" (click)="findLocation(latLong.value)">
+      Locate
+    </button>
+  </div>
+</form>
