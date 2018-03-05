@@ -12,8 +12,12 @@ export class LatlongLocateComponent implements OnInit {
   ngOnInit() {
   }
 
+    /**
+     * Emits an event whenever a user enters a latlong string into the search box and hits enter
+     * or clicks the locate button
+     * @param value
+     */
   findLocation(value) {
-    console.log('Clicked', value);
     this.latlongLocate.emit(value);
   }
 }

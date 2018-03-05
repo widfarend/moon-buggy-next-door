@@ -5,8 +5,11 @@ import {Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent implements OnInit, OnChanges {
+export class SidebarComponent implements OnInit {
+    // The list of vehicles
     @Input('vehicles') vehicles: any = [];
+
+    // Used to jump to selected vehicle on the map
     @Output('locateVehicle') locateVehicle: EventEmitter<any> = new EventEmitter();
     constructor() {
     }
@@ -14,15 +17,10 @@ export class SidebarComponent implements OnInit, OnChanges {
     ngOnInit() {
     }
 
-    ngOnChanges(changes: SimpleChanges) {
-        // console.log(changes.dataPoints);
-
-        if (changes['vehicles']) {
-            console.log(changes['vehicles'].currentValue);
-        }
-
-    }
-
+    /**
+     * Emits an event to allow app to pan and zoom to selected vehicle on the map
+     * @param event
+     */
     selectVehicle(event) {
         // console.log(event);
         this.locateVehicle.emit(`${event.lat},${event.long}`);

@@ -11,9 +11,16 @@ import { CommandCentre } from '../../models/command-centre.model';
     styleUrls: ['./moon-map.component.css']
 })
 export class MoonMapComponent implements OnInit, OnChanges {
+    // Reference to the google map element
     @ViewChild('gmap') gmap: ElementRef;
+
+    // Vehicle datapoints
     @Input('dataPoints') dataPoints: any = [];
+
+    // The CND Command Centre
     @Input('commandCentre') commandCentre: CommandCentre = { lat: 0, long: 0, icon: '' };
+
+    // The map!
     private map: any;
 
     constructor() {
@@ -22,8 +29,10 @@ export class MoonMapComponent implements OnInit, OnChanges {
 
     ngOnInit() {
         try {
+            // Intialise the map so it appears on screen
             this.initMap();
-            // console.log(JSON.stringify(this.commandCentre));
+
+            // Add the command centre as a datapoint on the map
             this.addBase(this.commandCentre);
         } catch (error) {
             console.log(error);
@@ -32,8 +41,7 @@ export class MoonMapComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        // console.log(changes.dataPoints);
-
+        // Add a new vehicle to the map as it is added
         if (changes['dataPoints']) {
             this.addDataPoints(changes.dataPoints.currentValue);
         }
@@ -41,11 +49,10 @@ export class MoonMapComponent implements OnInit, OnChanges {
     }
 
     /**
-     *
+     * Sets up the map as per google maps api docs
+     * https://developers.google.com/maps/documentation/javascript/examples/maptype-image
      */
     initMap() {
-        // console.log(google);
-
         this.map = new google.maps.Map(this.gmap.nativeElement, {
             center: {lat: 0, lng: 0},
             zoom: 2,
@@ -106,7 +113,7 @@ export class MoonMapComponent implements OnInit, OnChanges {
     }
 
     /**
-     *
+     * Adds any type of data point to the map with an icon (if supplied)
      * @param dataPoints
      */
     addDataPoints(dataPoints: any) {
@@ -123,13 +130,17 @@ export class MoonMapComponent implements OnInit, OnChanges {
     }
 
     /**
-     *
+     * Adds the command centre as a datapoint on the map
      * @param base
      */
     addBase(base: any) {
         this.addDataPoints([].concat(base));
     }
 
+    /**
+     * Pans and zooms to a specific lat long
+     * @param latlong
+     */
     locate(latlong) {
         const [ lat, long ] = latlong.split(',');
         if (!isNaN(lat) && !isNaN(long)) {
@@ -162,6 +173,11 @@ export class MoonMapComponent implements OnInit, OnChanges {
         return R * c; // Distance in km
     }
 
+    /**
+     * Converts degrees to radius
+     * @param deg
+     * @returns {number}
+     */
     deg2rad(deg) {
         return deg * (Math.PI / 180);
     }

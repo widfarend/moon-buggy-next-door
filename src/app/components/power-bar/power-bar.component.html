@@ -1,13 +1,20 @@
 <div class="w-32 flex flex-row ">
-  <div
-          class="ml-2 h-4 rounded-sm text-center"
-          [ngClass]="{
-                            'bg-red': getRed(powerLevel),
-                            'bg-yellow':  getAmber(powerLevel),
-                            'bg-green':  getGreen(powerLevel)
-                         }"
-          [ngStyle]="{'width': powerLevel + '%'}">
+    <!-- The power bar itself
 
-  </div>
-  <p class="text-sm leading-tight text-grey-dark ml-1">{{powerLevel}}%</p>
+     Display red if power is 20 or below
+     Display yellow if power is between 21 and 70
+     Display green if power is 71 and above
+
+     -- TODO: Make this animated -->
+    <div class="ml-2 h-4 rounded-sm text-center"
+         [ngClass]="{
+                        'bg-red': getRed(powerLevel),
+                        'bg-yellow':  getAmber(powerLevel),
+                        'bg-green':  getGreen(powerLevel)
+                     }"
+        [ngStyle]="{'width': powerLevel + '%'}"
+    >
+    </div>
+    <!-- The percentage of power in text -->
+    <p class="text-sm leading-tight text-grey-dark ml-1">{{powerLevel}}%</p>
 </div>
