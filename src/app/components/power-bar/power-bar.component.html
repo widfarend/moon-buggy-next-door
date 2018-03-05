@@ -1,0 +1,13 @@
+<div class="w-32 flex flex-row ">
+  <div
+          class="ml-2 h-4 rounded-sm text-center"
+          [ngClass]="{
+                            'bg-red': getRed(powerLevel),
+                            'bg-yellow':  getAmber(powerLevel),
+                            'bg-green':  getGreen(powerLevel)
+                         }"
+          [ngStyle]="{'width': powerLevel + '%'}">
+
+  </div>
+  <p class="text-sm leading-tight text-grey-dark ml-1">{{powerLevel}}%</p>
+</div>
