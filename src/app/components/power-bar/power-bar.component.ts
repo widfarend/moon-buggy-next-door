@@ -12,7 +12,6 @@ export class PowerBarComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log(this.powerLevel);
     }
 
     // UI specific functions for altering battery bar colours
