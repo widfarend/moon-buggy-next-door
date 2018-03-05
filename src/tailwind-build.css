@@ -10,8 +10,14 @@
     @apply .p-0 .mt-0 .ml-0 .bg-white .absolute .z-10 .w-full
 }
 
+@screen md {
+    .lat-long-inner {
+        @apply .text-center .mx-auto .mt-0 .bg-white .shadow-lg .border .pl-4 .pr-4
+    }
+}
+
 .lat-long-inner {
-    @apply .text-center .mx-auto .mt-0 .bg-white .shadow-lg .border .pl-4 .pr-4
+    @apply .text-center .w-full .mt-0 .bg-white .pl-4 .pr-4
 }
 
 @screen md {

@@ -4,12 +4,11 @@
             <div class="px-4 py-3 min-h-3 text-sm">
                 <p class="text-lg font-sans leading-tight text-cnd-blue">{{vehicle.name}}</p>
                 <p class="text-sm leading-tight text-grey-dark">{{vehicle.model}}</p>
-                <!--<p>Lat: {{vehicle.lat}}</p>-->
-                <!--<p>Long: {{vehicle.long}}</p>-->
                 <div class="flex flex-row pt-2">
                     <p class="text-sm leading-tight text-grey-dark">Battery Level </p>
                     <cnd-power-bar [powerLevel]="vehicle.power_level_percent"></cnd-power-bar>
                 </div>
+                <p class="mt-2 text-xs text-grey-dark">{{vehicle.name}} is {{vehicle.distanceToCNDCC}} km from the CND Command Centre.</p>
             </div>
         </div>
     </span>

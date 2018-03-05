@@ -1,4 +1,5 @@
 import {Component, OnInit, ElementRef, ViewChild, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {environment} from '../../../environments/environment';
 
 declare const google: any;
 
@@ -125,9 +126,43 @@ export class MoonMapComponent implements OnInit, OnChanges {
     locate(latlong) {
         const [ lat, long ] = latlong.split(',');
         if (!isNaN(lat) && !isNaN(long)) {
-            this.map.setCenter(new google.maps.LatLng( Number(lat), Number(long) ));
+            this.map.panTo(new google.maps.LatLng( Number(lat), Number(long) ));
+            this.map.setZoom(12);
 
         }
+    }
+
+    /**
+     * Uses the Haversine formula to calculate distance from here:
+     * https://en.wikipedia.org/wiki/Haversine_formula
+     * @param latlong1
+     * @param latlong2
+     * @returns {number}
+     */
+    getDistanceFromLatLonInKm(latlong1, latlong2) {
+        const { lat1, lon1 } = latlong1;
+        const { lat2, lon2 } = latlong2;
+
+        console.log('Haversine 1', lat1);
+        console.log('Haversine 2', latlong2);
+
+        const R = environment.MOON_RADIUS; // Radius of the moon in km
+        const dLat = this.deg2rad(lat2 - lat1);  // deg2rad below
+        console.log(dLat);
+        const dLon = this.deg2rad(lon2 - lon1);
+        const a =
+            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2)
+        ;
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        console.log('*******', c);
+        return R * c; // Distance in km
+    }
+
+    deg2rad(deg) {
+        console.log('DEGREE: ', deg);
+        return deg * (Math.PI / 180);
     }
 
 }

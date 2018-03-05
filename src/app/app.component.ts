@@ -29,21 +29,36 @@ export class AppComponent implements OnInit {
 
         for (let i = 0; i <= 5; i++) {
             this.vehicleService.get(i)
-                .subscribe(vehicle => {
-                    this.vehiclesRender.push({...vehicle, icon: this.icons['vehicle']});
-                    return this.vehicles = [].concat({...vehicle, icon: this.icons['vehicle']});
+                .subscribe(data => {
+                    const vehicle = {
+                        ...data,
+                        icon: this.icons['vehicle'],
+                        distanceToCNDCC: Math.floor(this.calculateDistance(data, this.commandCentre))
+                    };
+
+                    // TODO: Use an observable (push method works for HTML rendering / concat enables components to receive
+                    // each vehicle as it arrives from the http request
+                    this.vehiclesRender.push(vehicle);
+                    return this.vehicles = [].concat(vehicle);
                 });
         }
 
     }
 
     ngOnInit() {
-
-
     }
 
     onLatLongLocate(event) {
         this.cndMoonMap.locate(event);
+    }
+
+    calculateDistance(vehicle, commandCentre) {
+        const latlong1 = { lat1: vehicle.lat, lon1: vehicle.long };
+        const latlong2 = { lat2: commandCentre.lat, lon2: commandCentre.long };
+
+        console.log('*** RESULT: ', this.cndMoonMap.getDistanceFromLatLonInKm(latlong1, latlong2));
+
+        return this.cndMoonMap.getDistanceFromLatLonInKm(latlong1, latlong2);
     }
 
 
