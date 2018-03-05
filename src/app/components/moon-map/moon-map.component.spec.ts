@@ -22,4 +22,13 @@ describe('MoonMapComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should get a distance between two points in km', () => {
+    const expected = 3708.8021195972046;
+    const latLong1 = { lat1: 55.103903349543785, lon1: -138.7333326580172 };
+    const latLong2 = { lat2: 0.681400, lon2: 23.460550 };
+
+    const km = component.getDistanceFromLatLonInKm(latLong1, latLong2);
+    expect(km).toEqual(expected);
+  });
 });

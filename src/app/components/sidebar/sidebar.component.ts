@@ -24,7 +24,7 @@ export class SidebarComponent implements OnInit, OnChanges {
     }
 
     selectVehicle(event) {
-        console.log(event);
+        // console.log(event);
         this.locateVehicle.emit(`${event.lat},${event.long}`);
     }
 
