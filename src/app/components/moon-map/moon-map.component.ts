@@ -144,9 +144,8 @@ export class MoonMapComponent implements OnInit, OnChanges {
     locate(latlong) {
         const [ lat, long ] = latlong.split(',');
         if (!isNaN(lat) && !isNaN(long)) {
-            this.map.panTo(new google.maps.LatLng( Number(lat), Number(long) ));
             this.map.setZoom(12);
-
+            this.map.panTo(new google.maps.LatLng( Number(lat), Number(long) ));
         }
     }
 
